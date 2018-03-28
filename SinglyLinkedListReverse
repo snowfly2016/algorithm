@@ -5,3 +5,82 @@
    data域+next域：组成数据的存储映射，称为结点；
     注意：链表通过每个结点的链域将线性表的n个结点按其逻辑顺序链接在一起的。 　　
          每个结点只有一个链域的链表称为单链表（Single Linked List）。
+         
+ class Node{
+	private int Data; //数据域
+	private Node next;//指针域
+	
+	public Node(int Data){
+		this.Data = Data;
+	}
+	
+	public Node(int Data,Node next){
+		this.Data = Data;
+		this.next = next;
+	}
+
+	public int getData() {
+		return Data;
+	}
+
+	public void setData(int data) {
+		Data = data;
+	}
+
+	public Node getNext() {
+		return next;
+	}
+
+	public void setNext(Node next) {
+		this.next = next;
+	}
+	
+}
+public class SingleLinkedListReverse {
+
+	public static Node getSingleLinkedListReverseMethodOne(Node head){
+		if(head == null){
+			return head;
+		}
+		Node preNode = head; //上一结点  
+		Node currentNode = head.getNext();//当前节点
+		Node tempNode;// 临时结点，用于保存当前结点的指针域（即下一结点） 
+		while(currentNode != null){// 当前结点为null，说明位于尾结点  
+			tempNode = currentNode.getNext();
+			currentNode.setNext(preNode);// 反转指针域的指向  
+			// 指针往下移动  
+			preNode =currentNode;
+			currentNode = tempNode;
+		}
+		// 最后将原链表的头节点的指针域置为null，还回新链表的头结点，即原链表的尾结点  
+    head.setNext(null);  
+		return preNode;
+	}
+	
+	public static void main(String[] args) {  
+        Node head = new Node(0);  
+        Node node1 = new Node(1);  
+        Node node2 = new Node(2);  
+        Node node3 = new Node(3);  
+  
+        head.setNext(node1);  
+        node1.setNext(node2);  
+        node2.setNext(node3);  
+  
+        // 打印反转前的链表  
+        Node h = head;  
+        while (null != h) {  
+            System.out.print(h.getData() + " ");  
+            h = h.getNext();  
+        }  
+        // 调用反转方法  
+        head = getSingleLinkedListReverseMethodOne(head);  
+  
+        System.out.println("\n**************************");  
+        // 打印反转后的结果  
+        while (null != head) {  
+            System.out.print(head.getData() + " ");  
+            head = head.getNext();  
+        }  
+    }  
+}
