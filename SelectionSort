@@ -8,7 +8,7 @@
 public class SelectionSort {
 	
 	/**
-   * 实现方式一
+   	 * 实现方式一
 	 */
 	public static int[] selectSortOne(int[] array){
 		if(array == null || array.length <=0){
@@ -63,5 +63,5 @@ public class SelectionSort {
 	}
 }
 
-注意实现方式一和二的区别......
-虽然都是现实了选择排序但是在效率上还是有差别的需要；
+注意实现方式一和二的区别......虽然都是现实了选择排序但是在效率上还是有差别的；
+
