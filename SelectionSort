@@ -1,0 +1,67 @@
+选择排序Java实现：
+
+思路：
+首先，找到数组中最小的那个元素，其次，将它和数组的第一个元素交换位置（如果第一个元素是最小的元素那么它就和自己交换）。
+再次，在剩下的元素中找到最小的元素，将它与数组的第二个元素交换位置。如此往复，直到将整个数组排序。
+这种方法叫做选择排序，因为它在不断的选择剩余元素中的最小者
+
+public class SelectionSort {
+	
+	/**
+   * 实现方式一
+	 */
+	public static int[] selectSortOne(int[] array){
+		if(array == null || array.length <=0){
+			return array;
+		}
+		for (int i = 0; i < array.length; i++) {
+			int min =i;
+			for (int j = i+1; j < array.length; j++) {
+				if(array[j] <= array[min]){
+					int temp=array[min];
+					array[min]=array[j];
+					array[j]=temp;
+				}
+			}
+		}
+		return array;
+	}
+
+	/**
+	 * 实现方式二
+	 */
+	public static int[] selectSortTwo(int[] array){
+		if(array == null || array.length <=0){
+			return array;
+		}
+		for (int i = 0; i < array.length; i++) {
+			int min =i;
+			for (int j = i+1; j < array.length; j++) {
+				if(array[j] <= array[min]){
+					min=j;
+				}
+			}
+			swapValue(array, min, i);
+		}
+		return array;
+	}
+	public static void swapValue(int[] array,int min,int i){
+		if(min == i){
+			return;
+		}
+		int temp=array[min];
+		array[min]=array[i];
+		array[i]=temp;
+	}
+	
+	public static void main(String[] args) {
+		int[] array ={9,8,7,6,5,4,3,2,1};
+		int[] newarray = selectSortTwo(array);
+		for(int i=0;i<newarray.length;i++){
+			System.out.println(newarray[i]);
+		}
+	}
+}
+
+注意实现方式一和二的区别......
+虽然都是现实了选择排序但是在效率上还是有差别的需要；
