@@ -1,0 +1,32 @@
+	/**
+	 * 请实现一个函数,把字符串中的空格替换成20%,例如输入"We are happy",则输出"We20%are20%happy"
+	 * @param str
+	 * @return
+	 */
+	public static String replaceBlank(String str) {
+		if(str == null || str =="") {
+			return str;
+		}
+		char[] strArray = str.toCharArray();
+		int oldlength=strArray.length;
+		int numberOfBlank=0;
+		for(int i=0;i<oldlength;i++) {
+			if(strArray[i] == ' ') {
+				++numberOfBlank;
+			}
+		}
+		int newlength=oldlength+numberOfBlank*2;
+		char[] newArray = new char [newlength];
+		int count=newlength;
+		while(oldlength > 0) {
+			--oldlength;
+			if(strArray[oldlength]==' ') {
+				newArray[--count]='%';
+				newArray[--count]='0';
+				newArray[--count]='2';
+			}else {
+				newArray[--count]=strArray[oldlength];
+			}
+		}
+		return newArray.toString();
+	}
